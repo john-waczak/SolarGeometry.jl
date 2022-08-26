@@ -2,16 +2,23 @@ module SolarGeometry
 
 using Dates: DateTime, datetime2julian, year, month, day, hour, minute, second
 
-export solar_azimuth_elevation
+export solar_azimuth_altitude
 
 
 
 """
-    function solar_azimuth_elevation(utc_time, lat, lon, alt)
+    function solar_azimuth_altitude(utc_time, lat, lon, alt)
 
 Given a UTC time `utc_time`, latitude `Lat`, longitude `Lon`, and altitutde `alt`, return the solar azimuth and solar elevation angles (in degrees) relative to that location.
+
+
+This is a Julia (re)implementation of the Matlab script by Darin C. Koblick [(link)](https://www.mathworks.com/matlabcentral/fileexchange/23051-vectorized-solar-azimuth-and-elevation-estimation).
+
+Other references:
+- http://stjarnhimlen.se/comp/tutorial.html#5
+- http://www.stargazing.net/kepler/altaz.html
 """
-function solar_azimuth_elevation(UTC::DateTime, Lat, Lon, Alt)
+function solar_azimuth_altitude(UTC::DateTime, Lat, Lon, Alt)
     jd = datetime2julian(UTC)
     d  =  jd - 2451543.5
 
